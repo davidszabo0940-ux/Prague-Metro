@@ -1,0 +1,45 @@
+package com.google.android.gms.internal;
+
+import android.view.View;
+import android.view.ViewTreeObserver;
+import java.lang.ref.WeakReference;
+
+/* JADX INFO: loaded from: classes.dex */
+@zzir
+abstract class zzlj {
+    private final WeakReference<View> zzcol;
+
+    public zzlj(View view) {
+        this.zzcol = new WeakReference<>(view);
+    }
+
+    public final void detach() {
+        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+        if (viewTreeObserver != null) {
+            zzb(viewTreeObserver);
+        }
+    }
+
+    protected ViewTreeObserver getViewTreeObserver() {
+        View view = this.zzcol.get();
+        if (view == null) {
+            return null;
+        }
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver == null || !viewTreeObserver.isAlive()) {
+            return null;
+        }
+        return viewTreeObserver;
+    }
+
+    protected abstract void zza(ViewTreeObserver viewTreeObserver);
+
+    protected abstract void zzb(ViewTreeObserver viewTreeObserver);
+
+    public final void zzub() {
+        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
+        if (viewTreeObserver != null) {
+            zza(viewTreeObserver);
+        }
+    }
+}

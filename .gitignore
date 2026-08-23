@@ -1,0 +1,20 @@
+# Local source archives and large raw extraction folders
+*.apk
+*.xapk
+*.obb
+raw-unity-data/
+
+# Local tool and build output
+work/
+Library/
+Temp/
+Logs/
+Builds/
+obj/
+bin/
+
+# IDE files
+.vs/
+.idea/
+*.user
+*.suo

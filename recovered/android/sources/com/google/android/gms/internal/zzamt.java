@@ -1,0 +1,77 @@
+package com.google.android.gms.internal;
+
+import java.lang.reflect.Type;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/* JADX INFO: loaded from: classes.dex */
+public final class zzamt {
+    private zzant bek = zzant.beU;
+    private zzani bel = zzani.DEFAULT;
+    private zzamr bem = zzamq.IDENTITY;
+    private final Map<Type, zzamu<?>> ben = new HashMap();
+    private final List<zzanl> bea = new ArrayList();
+    private final List<zzanl> beo = new ArrayList();
+    private int bep = 2;
+    private int beq = 2;
+    private boolean ber = true;
+
+    private void zza(String str, int i, int i2, List<zzanl> list) {
+        zzamn zzamnVar;
+        if (str != null && !"".equals(str.trim())) {
+            zzamnVar = new zzamn(str);
+        } else if (i == 2 || i2 == 2) {
+            return;
+        } else {
+            zzamnVar = new zzamn(i, i2);
+        }
+        list.add(zzanj.zza((zzaoo<?>) zzaoo.zzr(Date.class), zzamnVar));
+        list.add(zzanj.zza((zzaoo<?>) zzaoo.zzr(Timestamp.class), zzamnVar));
+        list.add(zzanj.zza((zzaoo<?>) zzaoo.zzr(java.sql.Date.class), zzamnVar));
+    }
+
+    public zzamt zza(Type type, Object obj) {
+        zzanq.zzbn((obj instanceof zzang) || (obj instanceof zzamx) || (obj instanceof zzamu) || (obj instanceof zzank));
+        if (obj instanceof zzamu) {
+            this.ben.put(type, (zzamu) obj);
+        }
+        if ((obj instanceof zzang) || (obj instanceof zzamx)) {
+            this.bea.add(zzanj.zzb(zzaoo.zzl(type), obj));
+        }
+        if (obj instanceof zzank) {
+            this.bea.add(zzaon.zza(zzaoo.zzl(type), (zzank) obj));
+        }
+        return this;
+    }
+
+    public zzamt zza(zzamo... zzamoVarArr) {
+        for (zzamo zzamoVar : zzamoVarArr) {
+            this.bek = this.bek.zza(zzamoVar, true, true);
+        }
+        return this;
+    }
+
+    public zzamt zzcze() {
+        this.ber = false;
+        return this;
+    }
+
+    public zzams zzczf() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.addAll(this.bea);
+        Collections.reverse(arrayList);
+        arrayList.addAll(this.beo);
+        zza(null, this.bep, this.beq, arrayList);
+        return new zzams(this.bek, this.bem, this.ben, false, false, false, this.ber, false, false, this.bel, arrayList);
+    }
+
+    public zzamt zzd(int... iArr) {
+        this.bek = this.bek.zze(iArr);
+        return this;
+    }
+}
